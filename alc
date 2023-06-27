@@ -1,0 +1,24 @@
+	
+	2. ACL 적용
+	ACL작업을 tmsh접속
+	tmsh 입력
+	 
+	ACL LIST 조회
+	ssh: list sys sshd allow
+	http: list sys httpd allow
+	 
+	ACL Add IP
+	ssh: modify sys sshd allow add { 0.0.0.0/24 0.0.0.0 }
+	http: modify sys httpd allow add { 0.0.0.0/24 0.0.0.0 }
+	※ 최초 allow all인 설정에서 추가 시에는 add 대신 replace-all-with 명령어
+	 
+	ACL Delete IP
+	ssh: modify sys sshd allow delete { 0.0.0.0 }
+	http: modify sys httpd allow delete { 0.0.0.0 }
+	
+	3. 메일 시스템 로드밸런싱 관련
+	Mail / auth /sso  / 대학 공홈 ->
+	다른시스템 연동 -  L4 스위치 Source Address Translation 설정을 None 으로 설정한다. 
+	
+	Web / DNS / sdisk 호스팅 경우 
+	Source Address Translation 설정을 Auto-MAP 으로 설정한다.  
